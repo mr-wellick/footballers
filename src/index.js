@@ -19,7 +19,7 @@ app.use(urlencoded({ extended: false }));
 app.use(cors());
 app.use(morgan('dev'));
 
-db.connect((err) => {
+db.connect(err => {
   if (err) {
     console.error('error connecting: ' + err.stack);
     return;
