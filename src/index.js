@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import chalk from 'chalk';
 import { config } from 'dotenv';
 import { db } from './db.js';
+import { dropTable, createTable } from './create-db.js';
 import { footballersRouter } from './footballers/';
 
 // app initialization
@@ -24,14 +25,16 @@ db.connect(err => {
     console.error('error connecting: ' + err.stack);
     return;
   }
-
   return console.log('connected as id ' + db.threadId);
 });
+
+dropTable();
+createTable();
 
 // user route
 app.use('/api/v1', footballersRouter);
 
 // listen to server
-app.listen(port, () =>
-  console.log(chalk.cyan(`Listening on port: ${port}`))
-);
+app.listen(port, () => {
+  console.log(chalk.cyan(`Listening on port: ${port}`));
+});
