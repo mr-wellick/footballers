@@ -15,7 +15,7 @@ export const retrieveFootballers = async (req, res) => {
 };
 
 export const retrieveSquad = async (req, res) => {
-  const sql = 'SELECT * FROM poc_config.atletico_2003';
+  const sql = 'SELECT * FROM poc_config.barcelona_2004';
 
   try {
     const squad = await query(sql);
