@@ -6,7 +6,11 @@ import morgan from 'morgan';
 import chalk from 'chalk';
 import { config } from 'dotenv';
 import { db } from './db.js';
-import { dropTable, createTable } from './create-db.js';
+import {
+  dropTable,
+  createTable,
+  insertIntoTable
+} from './create-db.js';
 import { footballersRouter } from './footballers/';
 
 // app initialization
@@ -30,6 +34,7 @@ db.connect(err => {
 
 dropTable();
 createTable();
+insertIntoTable();
 
 // user route
 app.use('/api/v1', footballersRouter);
