@@ -1,29 +1,23 @@
 import express from 'express';
-import { retrieveFootballers } from './footballers.controllers.js';
-import { retrieveSquad } from './footballers.controllers.js';
-import { retrievePlayer } from './footballers.controllers.js';
+import {
+  retrieveSeasons,
+  retrieveSeason
+} from './footballers.controllers.js';
 
 const router = express.Router();
 
 /*
- * @route  GET api/v1/footballers
- * @desc   Retrieve all footballers
+ * @route  GET api/v1/seasons
+ * @desc   Retrieve all seasons
  * @access Public
  */
-router.get('/footballers', retrieveFootballers);
+router.get('/seasons', retrieveSeasons);
 
 /*
- * @route GET api/v1/squad
- * @desc Retrieve sqad list
+ * @route  GET api/v1/season
+ * @desc   Retrieve season
  * @access Public
  */
-router.get('/squad', retrieveSquad);
-
-/*
- * @route GET api/v1/player
- * @desc Retrieve player
- * @access Public
- */
-router.post('/player', retrievePlayer);
+router.post('/season', retrieveSeason);
 
 export default router;

@@ -99,8 +99,10 @@ export const insertIntoTable = async () => {
     console.log(chalk.cyan('---- INSER INTO TABLE ----'));
     parsedData.forEach(item => {
       const NAME = isValid(item[keys[0]])
-        ? item[keys[0]]
-        : item[keys[0]].replace(/[^a-zA-Z ]/g, '');
+        ? item[keys[0]].replace(/[0-9]/g, '')
+        : item[keys[0]]
+            .replace(/[^a-zA-Z ]/g, '')
+            .replace(/[0-9]/g, '');
 
       const sql = `INSERT INTO poc_config.season_${
         file.split('.')[0]

@@ -3,36 +3,25 @@ import util from 'util';
 
 const query = util.promisify(db.query).bind(db);
 
-export const retrieveFootballers = async (req, res) => {
-  const sql = 'SELECT * FROM poc_config.footballers';
+export const retrieveSeasons = async (req, res) => {
+  const sql = 'SHOW TABLES FROM poc_config;';
 
   try {
-    const footballers = await query(sql);
-    return res.status(200).send(footballers);
+    const seasons = await query(sql);
+    return res.status(200).send(seasons);
   } catch (err) {
-    return res.status(404).send('Cannot find footballers');
+    return res.status(404).send('Cannot retrieve seasons');
   }
 };
 
-export const retrieveSquad = async (req, res) => {
-  const sql = 'SELECT * FROM poc_config.barcelona_2004';
+export const retrieveSeason = async (req, res) => {
+  const { season } = req.body;
+  const sql = `SELECT * FROM poc_config.${season}`;
 
   try {
-    const squad = await query(sql);
-    return res.status(200).send(squad);
+    const season = await query(sql);
+    return res.status(200).send(season);
   } catch (err) {
-    return res.status(404).send('Cannot find sqad');
-  }
-};
-
-export const retrievePlayer = async (req, res) => {
-  const { name } = req.body;
-  const sql = `SELECT * FROM poc_config.footballers WHERE Name='${name}'`;
-
-  try {
-    const player = await query(sql);
-    return res.status(200).send(player);
-  } catch (err) {
-    return res.status(404).send('Cannot find player');
+    return res.status(404).send('Cannot retrieve season');
   }
 };
