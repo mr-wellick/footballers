@@ -5,4 +5,8 @@
 
 # Introduction
 
-    - To be continued.
+    - Web scrapped and processed Barcelona player statistics for the years 2004 to 2020.
+    - Once the data was processed, each year was saved as a csv file.
+    - With the help of Node.js and D3.js, loaded each csv file into memory to programmatically generate SQL commands.
+    - Finally, connected to MySQL locally and processed SQL commands to set up tables.
+   
