@@ -1,36 +1,36 @@
-"","Name","POS","Age","HT","WT","NAT","APP","SUB","G","A","SH","ST","FC","FA","YC","RC"
-"1","Martín Cáceres","D","33","5' 11""","172 lbs","Uruguay",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2","Albert Dalmau","D","28","6' 1""","179 lbs","Spain",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"3","Dani Alves2","D","37","5' 7""","152 lbs","Brazil","29","1","3","10","29","5","61","39","7","1"
-"4","Gerard Piqué3","D","33","6' 4""","163 lbs","Spain","32","3","2","0","15","5","15","10","6","1"
-"5","Carles Puyol5","D","42","5' 10""","172 lbs","Spain","32","1","1","2","7","2","19","41","7","0"
-"6","Gabriel Milito18","D","40","5' 9""","152 lbs","Argentina","11","2","0","1","3","1","14","2","2","0"
-"7","Maxwell19","D","39","5' 10""","161 lbs","Brazil","25","0","0","4","6","3","27","22","5","0"
-"8","Adriano21","D","35","5' 8""","163 lbs","Brazil","27","4","0","5","24","10","37","42","6","0"
-"9","Eric Abidal22","D","41","5' 11""","165 lbs","France","17","2","0","4","1","0","17","4","3","0"
-"10","Andreu Fontàs32","D","30","6' 1""","194 lbs","Spain","1","1","0","0","0","0","0","0","0","0"
-"11","Marc Muniesa46","D","28","5' 10""","159 lbs","Spain","0","0","0","0","0","0","0","0","0","0"
-"12","Sergi Gómez","M","28","6' 1""","174 lbs","Spain",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"13","Ilie","M","29","6' 0""","172 lbs","Spain",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"14","Alexsandr Hleb","M","39","6' 1""","161 lbs","Belarus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"15","Martí Riverola","M","29","5' 10""","159 lbs","Spain",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"16","Víctor Sánchez","M","33","5' 9""","159 lbs","Spain","25","3","2","4","13","5","48","30","6","1"
-"17","Nolito","M","33","5' 9""","141 lbs","Spain",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"18","Xavi6","M","40","5' 6""","146 lbs","Spain","34","3","3","14","45","19","12","54","4","0"
-"19","Andrés Iniesta8","M","36","5' 7""","159 lbs","Spain","29","9","1","5","28","10","23","67","2","0"
-"20","Seydou Keita15","M","40","6' 0""","165 lbs","Mali","29","6","6","2","39","10","66","49","8","0"
-"21","Sergio Busquets16","M","32","6' 2""","161 lbs","Spain","33","7","0","2","9","1","48","85","8","1"
-"22","Sergi Roberto23","M","28","5' 10""","150 lbs","Spain",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"23","Jonathan dos Santos28","M","30","5' 8""","161 lbs","Mexico","3","2","0","0","1","0","3","1","0","0"
-"24","Gai Yigaal Assulin31","M","29","5' 10""","168 lbs","Israel",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"25","Edu Oriol","F","33","5' 9""","154 lbs","Spain",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"26","Cristian Tello","F","29","5' 10""","141 lbs","Spain",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"27","Víctor Vázquez","F","33","5' 9""","157 lbs",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"28","David Villa7","F","38","5' 9""","150 lbs","Spain","32","1","21","3","139","61","46","42","4","0"
-"29","Zlatan Ibrahimovic9","F","39","6' 4""","183 lbs","Sweden","29","6","16","7","100","44","59","34","6","1"
-"30","Lionel Messi10","F","33","5' 7""","159 lbs","Argentina","35","5","34","10","163","86","29","84","3","0"
-"31","Bojan Krkic11","F","30","5' 8""","141 lbs","Spain","23","12","8","3","31","14","10","17","2","0"
-"32","Benja14","F","33","6' 2""","183 lbs","Spain",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"33","Pedro17","F","33","5' 7""","139 lbs","Spain","34","12","12","3","38","20","34","57","2","0"
-"34","Jeffrén Suárez20","F","32","5' 9""","161 lbs","Venezuela","12","6","2","0","5","3","6","6","1","0"
-"35","Jonathan36","F","35","5' 11""","159 lbs","Spain","0","0","0","0","0","0","0","0","0","0"
+"","name","pos","age","nat","app","sub","g","a","sh","st","fc","fa","yc","rc","num"
+"1","Martín Cáceres","D","33","Uruguay",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2","Albert Dalmau","D","28","Spain",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"3","Dani Alves","D","37","Brazil","29","1","3","10","29","5","61","39","7","1","2"
+"4","Gerard Piqué","D","33","Spain","32","3","2","0","15","5","15","10","6","1","3"
+"5","Carles Puyol","D","42","Spain","32","1","1","2","7","2","19","41","7","0","5"
+"6","Gabriel Milito","D","40","Argentina","11","2","0","1","3","1","14","2","2","0","18"
+"7","Maxwell","D","39","Brazil","25","0","0","4","6","3","27","22","5","0","19"
+"8","Adriano","D","35","Brazil","27","4","0","5","24","10","37","42","6","0","21"
+"9","Eric Abidal","D","41","France","17","2","0","4","1","0","17","4","3","0","22"
+"10","Andreu Fontàs","D","30","Spain","1","1","0","0","0","0","0","0","0","0","32"
+"11","Marc Muniesa","D","28","Spain","0","0","0","0","0","0","0","0","0","0","46"
+"12","Sergi Gómez","M","28","Spain",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"13","Ilie","M","29","Spain",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"14","Alexsandr Hleb","M","39","Belarus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"15","Martí Riverola","M","29","Spain",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"16","Víctor Sánchez","M","33","Spain","25","3","2","4","13","5","48","30","6","1",NA
+"17","Nolito","M","34","Spain",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"18","Xavi","M","40","Spain","34","3","3","14","45","19","12","54","4","0","6"
+"19","Andrés Iniesta","M","36","Spain","29","9","1","5","28","10","23","67","2","0","8"
+"20","Seydou Keita","M","40","Mali","29","6","6","2","39","10","66","49","8","0","15"
+"21","Sergio Busquets","M","32","Spain","33","7","0","2","9","1","48","85","8","1","16"
+"22","Sergi Roberto","M","28","Spain",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"23"
+"23","Jonathan dos Santos","M","30","Mexico","3","2","0","0","1","0","3","1","0","0","28"
+"24","Gai Yigaal Assulin","M","29","Israel",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"31"
+"25","Edu Oriol","F","33","Spain",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"26","Cristian Tello","F","29","Spain",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"27","Víctor Vázquez","F","33",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"28","David Villa","F","38","Spain","32","1","21","3","139","61","46","42","4","0","7"
+"29","Zlatan Ibrahimovic","F","39","Sweden","29","6","16","7","100","44","59","34","6","1","9"
+"30","Lionel Messi","F","33","Argentina","35","5","34","10","163","86","29","84","3","0","10"
+"31","Bojan Krkic","F","30","Spain","23","12","8","3","31","14","10","17","2","0","11"
+"32","Benja","F","33","Spain",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"14"
+"33","Pedro","F","33","Spain","34","12","12","3","38","20","34","57","2","0","17"
+"34","Jeffrén Suárez","F","32","Venezuela","12","6","2","0","5","3","6","6","1","0","20"
+"35","Jonathan","F","35","Spain","0","0","0","0","0","0","0","0","0","0","36"
