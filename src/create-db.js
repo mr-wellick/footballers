@@ -55,7 +55,6 @@ export const createTable = async () => {
 
     Object.keys(parsedData[0])
       .filter(key => key !== 'num')
-      .filter(key => key !== '')
       .forEach(key => {
         if (key === 'rc') {
           rows += `${key} varchar(255)\n`;
@@ -84,14 +83,13 @@ export const insertIntoTable = async () => {
       'utf8'
     );
     const parsedData = csvParse(contents);
-    const keys = Object.keys(parsedData[0])
-      .filter(key => key !== 'num')
-      .filter(key => key !== '');
+    const keys = Object.keys(parsedData[0]).filter(
+      key => key !== 'num'
+    );
     let rowNames = '';
 
     Object.keys(parsedData[0])
       .filter(key => key !== 'num')
-      .filter(key => key !== '')
       .forEach(key => {
         if (key === 'rc') {
           rowNames += `${key}`;
