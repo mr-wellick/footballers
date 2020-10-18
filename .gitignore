@@ -4,3 +4,7 @@ dist
 .env
 coverage
 yarn-error.log
+.RData
+.RHistory
+
+
