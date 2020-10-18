@@ -34,7 +34,7 @@ for (index in 1:length(season_urls)) {
 
 # save all seasons as csv's
 for(index in 1:length(season_years)) {
-  write.csv(season_list[[index]] %>% na_if('--'), file = paste(season_years[index], sep = '', '.csv') )
+  write.csv(season_list[[index]] %>% na_if('--'), file = paste(season_years[index], sep = '', '.csv'), row.names = F )
 }
 
 
