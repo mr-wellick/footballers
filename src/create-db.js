@@ -29,12 +29,15 @@ export const dropTable = async () => {
   try {
     /* eslint-disable-next-line */
     const result = await Promise.all(
-      sqlCommands.map(command => query(command))
+      sqlCommands.map(async command => {
+        console.log(
+          '   DROPPING THE FOLLOWING TABLE:',
+          '===>',
+          chalk.cyan(command)
+        );
+        return await query(command);
+      })
     );
-    console.log(
-      chalk.cyan('   DROPPING TABLES THE FOLLOWING TABLES:')
-    );
-    sqlCommands.forEach(command => console.log(`      ${command}`));
     return;
   } catch (err) {
     console.log('Failed to drop tables.', err);
