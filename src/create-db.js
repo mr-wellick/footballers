@@ -1,9 +1,9 @@
-const fs = require('fs');
-const { promisify } = require('util');
-const { db } = require('./db.js');
-const path = require('path');
-const { csvParse } = require('d3-dsv');
-const chalk = require('chalk');
+import fs from 'fs';
+import { promisify } from 'util';
+import { db } from './db.js';
+import path from 'path';
+import { csvParse } from 'd3-dsv';
+import chalk from 'chalk';
 
 const query = promisify(db.query).bind(db);
 const readFile = promisify(fs.readFile);
@@ -21,23 +21,24 @@ const getFileNames = async () => {
 
 export const dropTable = async () => {
   const files = await getFileNames();
+  const sqlCommands = files.map(
+    file =>
+      `DROP TABLE IF EXISTS poc_config.season_${file.split('.')[0]};`
+  );
 
   try {
-    for (const file of files) {
-      const sql = `DROP TABLE IF EXISTS poc_config.season_${
-        file.split('.')[0]
-      };`;
-
-      console.log(
-        chalk.cyan('   DROPPING TABLE'),
-        ' ===> ',
-        chalk.magenta(`${sql}`)
-      );
-
-      query(sql);
-    }
+    /* eslint-disable-next-line */
+    const result = await Promise.all(
+      sqlCommands.map(command => query(command))
+    );
+    console.log(
+      chalk.cyan('   DROPPING TABLES THE FOLLOWING TABLES:')
+    );
+    sqlCommands.forEach(command => console.log(`      ${command}`));
+    return;
   } catch (err) {
-    console.error('Failed to drop tables', err);
+    console.log('Failed to drop tables.', err);
+    return;
   }
 };
 
