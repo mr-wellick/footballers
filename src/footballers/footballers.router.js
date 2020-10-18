@@ -1,7 +1,8 @@
 import express from 'express';
 import {
   retrieveSeasons,
-  retrieveSeason
+  retrieveSeason,
+  retrieveByPosition
 } from './footballers.controllers.js';
 
 const router = express.Router();
@@ -19,5 +20,12 @@ router.get('/seasons', retrieveSeasons);
  * @access Public
  */
 router.post('/season', retrieveSeason);
+
+/*
+ * @route  GET api/v1/position
+ * @desc   Retrieve players by position for specified season
+ * @access Public
+ */
+router.post('/position', retrieveByPosition);
 
 export default router;
