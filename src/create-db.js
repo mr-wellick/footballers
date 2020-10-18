@@ -99,3 +99,16 @@ export const insertIntoTable = async () => {
     return;
   }
 };
+
+export const checkBeforeRunningQueries = async () => {
+  const res = await query('SHOW TABLES LIKE "%season%";');
+
+  try {
+    if (res.length > 0) {
+      return true;
+    }
+  } catch (err) {
+    console.err(err);
+    return false;
+  }
+};

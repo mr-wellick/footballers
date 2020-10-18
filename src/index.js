@@ -9,7 +9,8 @@ import { db } from './db.js';
 import {
   dropTable,
   createTable,
-  insertIntoTable
+  insertIntoTable,
+  checkBeforeRunningQueries
 } from './create-db.js';
 import { footballersRouter } from './footballers/';
 
@@ -32,9 +33,11 @@ db.connect(err => {
   return console.log('connected as id ' + db.threadId);
 });
 
-dropTable();
-createTable();
-insertIntoTable();
+if (checkBeforeRunningQueries() === false) {
+  dropTable();
+  createTable();
+  insertIntoTable();
+}
 
 // user route
 app.use('/api/v1', footballersRouter);
