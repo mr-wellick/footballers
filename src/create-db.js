@@ -5,6 +5,9 @@ import path from 'path';
 import { csvParse } from 'd3-dsv';
 import chalk from 'chalk';
 
+const logger = (message, sqlQuery) =>
+  console.log(message, chalk.cyan(sqlQuery));
+
 const query = promisify(db.query).bind(db);
 const readFile = promisify(fs.readFile);
 const readDir = promisify(fs.readdir);
@@ -30,11 +33,7 @@ export const dropTable = async () => {
     /* eslint-disable-next-line */
     const result = await Promise.all(
       sqlCommands.map(async command => {
-        console.log(
-          '   DROPPING THE FOLLOWING TABLE:',
-          '===>',
-          chalk.cyan(command)
-        );
+        logger('DROPPING THE FOLLOWING TABLE: ', command);
         return await query(command);
       })
     );
@@ -61,7 +60,7 @@ export const createTable = async () => {
       const sql = `CREATE TABLE poc_config.season_${
         file.split('.')[0]
       }(${rows});`;
-      console.log(chalk.cyan('  CREATING TABLE'), '===>', sql);
+      logger('CREATING TABLE: ', sql);
       query(sql);
     }
   } catch (err) {
@@ -89,7 +88,7 @@ export const insertIntoTable = async () => {
         const sql = `INSERT INTO poc_config.season_${
           file.split('.')[0]
         }(${rows}) VALUES (${values});`;
-        console.log(sql);
+        logger('INSERTING INTO TABLE: ', sql);
         query(sql);
       });
     }
