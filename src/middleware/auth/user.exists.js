@@ -10,11 +10,11 @@ const userExists = async (req, res, next) => {
   const [err, user] = await promiseUtil(query(sql));
 
   if (err) {
-    return res.status(500).send('userExists() error');
+    return res.status(500).send('user exists error');
   }
 
   if (user.length === 1) {
-    return res.status(401).send('User exists');
+    return res.status(401).send('user exists');
   }
 
   next();
