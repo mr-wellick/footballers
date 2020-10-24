@@ -21,7 +21,7 @@ export const userRegister = async (req, res) => {
     user_id,
   };
 
-  res.status(200).send(user);
+  return res.status(200).send(user);
 };
 
 export const userLogin = async (req, res) => {
