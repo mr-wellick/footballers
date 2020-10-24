@@ -44,7 +44,7 @@ if (checkBeforeRunningQueries() === false) {
 app.use('/api/v1', footballersRouter);
 
 // user route
-app.use('/api/v1', userRouter);
+app.use('/api/v1/user', userRouter);
 
 // listen to server
 app.listen(port, () => {

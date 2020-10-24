@@ -13,7 +13,7 @@ export const userRegister = async (req, res) => {
   const [err] = await promiseUtil(query(sql));
 
   if (err) {
-    return res.status(400).send('Failed to create account');
+    return res.status(400).send('create account error');
   }
 
   const user = {
@@ -22,4 +22,16 @@ export const userRegister = async (req, res) => {
   };
 
   res.status(200).send(user);
+};
+
+export const userLogin = async (req, res) => {
+  const { user_email } = req.body;
+  const sql = `SELECT user_id, user_email FROM poc_config.users WHERE user_email='${user_email}'`;
+  const [err, user] = await promiseUtil(query(sql));
+
+  if (err) {
+    return res.status(500).send('login error');
+  }
+
+  return res.status(200).send(user);
 };
