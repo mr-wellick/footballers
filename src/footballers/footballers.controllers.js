@@ -1,9 +1,8 @@
 import { db } from '../db.js';
+import { promiseUtil } from '../utilities';
 import util from 'util';
 
 const query = util.promisify(db.query).bind(db);
-const promiseUtil = promise =>
-  promise.then(data => [null, data]).catch(err => [err]);
 
 export const retrieveSeasons = async (req, res) => {
   const sql = 'SHOW TABLES FROM poc_config;';
