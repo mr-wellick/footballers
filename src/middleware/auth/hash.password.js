@@ -12,7 +12,7 @@ const hashPassword = async (req, res, next) => {
   );
 
   if (err) {
-    return res.status(400).send('Failed to create account');
+    return res.status(400).send('hash password error');
   }
 
   req.body.user_password = encryptedPassword;
