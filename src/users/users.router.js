@@ -1,5 +1,8 @@
 import express from 'express';
-import { hashPassword } from '../middleware/auth/index.js';
+import {
+  hashPassword,
+  userExists,
+} from '../middleware/auth/index.js';
 import { userRegister } from './users.controllers.js';
 
 const router = express.Router();
@@ -9,6 +12,6 @@ const router = express.Router();
  * @desc   Register a user
  * @access Public
  */
-router.post('/login', hashPassword, userRegister);
+router.post('/login', userExists, hashPassword, userRegister);
 
 export default router;
