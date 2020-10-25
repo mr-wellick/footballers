@@ -12,5 +12,5 @@ afterEach(async (done) => {
 
 afterAll((done) => {
   console.log('done');
-  return done();
+  done();
 });
