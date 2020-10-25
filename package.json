@@ -24,7 +24,6 @@
     "d3-dsv": "^2.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "lodash.map": "^4.6.0",
     "mysql": "^2.18.1",
     "uuid": "^8.3.1",
     "validator": "^13.0.0"
@@ -40,7 +39,6 @@
     "chalk": "^4.0.0",
     "codecov": "^3.5.0",
     "concurrently": "^5.1.0",
-    "cuid": "^2.1.6",
     "dotenv": "^8.1.0",
     "eslint": "^7.10.0",
     "eslint-config-prettier": "^6.1.0",
