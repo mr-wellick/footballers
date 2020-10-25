@@ -7,7 +7,6 @@ import chalk from 'chalk';
 
 const logger = (message, sqlQuery) =>
   console.log(message, chalk.cyan(sqlQuery));
-
 const query = promisify(db.query).bind(db);
 const readFile = promisify(fs.readFile);
 const readDir = promisify(fs.readdir);
@@ -15,7 +14,9 @@ const readDir = promisify(fs.readdir);
 const getFileNames = async () => {
   const files = await readDir(path.join(__dirname, '../src/data'));
   try {
-    const filteredFiles = files.filter(file => file.includes('csv'));
+    const filteredFiles = files.filter((file) =>
+      file.includes('csv')
+    );
     return filteredFiles;
   } catch (err) {
     return err;
@@ -25,14 +26,14 @@ const getFileNames = async () => {
 export const dropTable = async () => {
   const files = await getFileNames();
   const sqlCommands = files.map(
-    file =>
+    (file) =>
       `DROP TABLE IF EXISTS poc_config.season_${file.split('.')[0]};`
   );
 
   try {
     /* eslint-disable-next-line */
     const result = await Promise.all(
-      sqlCommands.map(async command => {
+      sqlCommands.map(async (command) => {
         logger('DROPPING THE FOLLOWING TABLE: ', command);
         return await query(command);
       })
@@ -55,7 +56,7 @@ export const createTable = async () => {
       );
       const parsedData = csvParse(contents);
       const rows = parsedData['columns']
-        .map(row => `${row} VARCHAR(255)`)
+        .map((row) => `${row} VARCHAR(255)`)
         .join(', ');
       const sql = `CREATE TABLE poc_config.season_${
         file.split('.')[0]
@@ -81,9 +82,9 @@ export const insertIntoTable = async () => {
       const parsedData = csvParse(contents);
       const rows = parsedData['columns'].join(', ');
 
-      parsedData.forEach(item => {
+      parsedData.forEach((item) => {
         const values = Object.values(item)
-          .map(value => `'${value}'`)
+          .map((value) => `'${value}'`)
           .join(', ');
         const sql = `INSERT INTO poc_config.season_${
           file.split('.')[0]
