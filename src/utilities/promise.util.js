@@ -1,4 +1,4 @@
 const promiseUtil = (promise) =>
-  promise.then((res) => [null, res]).catch((err) => [err]);
+  promise.then((res) => [undefined, res]).catch((err) => [err]);
 
 export default promiseUtil;

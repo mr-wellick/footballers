@@ -7,7 +7,7 @@ test('after a successful api call, err should be null and data should be a valid
     })
   );
 
-  expect(err).toBe(null);
+  expect(err).toBe(undefined);
   expect(data).toBe('this is my response data');
 });
 
