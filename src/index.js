@@ -50,3 +50,5 @@ app.use('/api/v1/user', userRouter);
 app.listen(port, () => {
   console.log(chalk.cyan(`Listening on port: ${port}`));
 });
+
+export default app;
