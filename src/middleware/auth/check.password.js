@@ -4,7 +4,7 @@ import { db } from '../../db.js';
 import { promiseUtil } from '../../utilities/';
 
 const query = util.promisify(db.query).bind(db);
-const check = util.promisify(bcrypt.compare);
+const compare = util.promisify(bcrypt.compare);
 
 const checkPassword = async (req, res, next) => {
   const { user_email, user_password } = req.body;
@@ -21,7 +21,7 @@ const checkPassword = async (req, res, next) => {
   }
 
   const [passwordError, passwordMatch] = await promiseUtil(
-    check(user_password, hashed_password)
+    compare(user_password, hashed_password)
   );
 
   if (passwordError) {
