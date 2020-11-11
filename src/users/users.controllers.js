@@ -1,9 +1,11 @@
+import bcrypt from 'bcrypt';
 import { db } from '../db.js';
 import { promiseUtil } from '../utilities';
 import { v4 as uuidv4 } from 'uuid';
 import util from 'util';
 
 const query = util.promisify(db.query).bind(db);
+const compare = util.promisify(bcrypt.compare);
 
 export const userRegister = async (req, res) => {
   const { user_email, user_password } = req.body;
@@ -25,13 +27,21 @@ export const userRegister = async (req, res) => {
 };
 
 export const userLogin = async (req, res) => {
-  const { user_email } = req.body;
-  const sql = `SELECT user_id, user_email FROM poc_config.users WHERE user_email='${user_email}'`;
-  const [err, user] = await promiseUtil(query(sql));
+  const { user_password } = req.body;
+  const hashed_password = res.locals.user.user_password;
+
+  const [err, passwordMatch] = await promiseUtil(
+    compare(user_password, hashed_password)
+  );
 
   if (err) {
-    return res.status(500).send('login error');
+    return res.status(500).send('password error');
   }
 
-  return res.status(200).send(user);
+  if (!passwordMatch) {
+    return res.status(401).send('wrong password');
+  }
+
+  delete res.locals.user.user_password;
+  return res.status(200).send(res.locals.user);
 };

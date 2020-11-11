@@ -1,9 +1,6 @@
 import express from 'express';
-import {
-  checkPassword,
-  hashPassword,
-  userExists,
-} from '../middleware/auth/';
+import { hashPassword, userExists } from '../middleware/auth/';
+import { findUser } from '../middleware/sql-queries';
 import { userRegister, userLogin } from './users.controllers.js';
 
 const router = express.Router();
@@ -20,6 +17,6 @@ router.post('/register', userExists, hashPassword, userRegister);
  * @desc   Login a user
  * @access Public
  */
-router.post('/login', checkPassword, userLogin);
+router.post('/login', findUser, userLogin);
 
 export default router;
