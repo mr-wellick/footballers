@@ -1,5 +1,5 @@
 import express from 'express';
-import { hashPassword, userExists } from '../middleware/auth/';
+import { hashPassword } from '../middleware/auth/';
 import { findUser } from '../middleware/sql-queries';
 import { userRegister, userLogin } from './users.controllers.js';
 
@@ -10,7 +10,7 @@ const router = express.Router();
  * @desc   Register a user
  * @access Public
  */
-router.post('/register', userExists, hashPassword, userRegister);
+router.post('/register', findUser, hashPassword, userRegister);
 
 /*
  * @route  POST api/v1/user/login
