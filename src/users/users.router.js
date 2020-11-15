@@ -32,6 +32,18 @@ router.post(
  * @desc   Login a user
  * @access Public
  */
-router.post('/login', findUser, userLogin);
+router.post(
+  '/login',
+  [
+    body('user_email').isEmail().normalizeEmail(),
+    body('user_password')
+      .isLength({ min: 8, max: 64 })
+      .trim()
+      .escape(),
+  ],
+  validateInput,
+  findUser,
+  userLogin
+);
 
 export default router;
