@@ -1,16 +1,17 @@
-//const URI = 'mongodb://localhost:27017/lrnz-devapi-testing';
+import { db } from './src/db.js';
 
-beforeEach(async (done) => {
-  console.log('before each');
-  done();
+beforeAll(() => {
+  jest.useFakeTimers();
+  db.connect((err) => {
+    if (err) {
+      console.error('error connecting: ' + err.stack);
+      return;
+    }
+    return console.log('connected as id ' + db.threadId);
+  });
 });
 
-afterEach(async (done) => {
-  console.log('after each');
-  done();
-});
-
-afterAll((done) => {
-  console.log('done');
-  done();
+afterAll(() => {
+  jest.useFakeTimers();
+  db.destroy();
 });
