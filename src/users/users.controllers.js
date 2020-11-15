@@ -9,7 +9,6 @@ const compare = util.promisify(bcrypt.compare);
 
 export const userRegister = async (req, res) => {
   const { user_email, user_password } = req.body;
-  console.log(user_email, user_password);
   const user_id = uuidv4();
   const sql = `INSERT INTO poc_config.users (user_id, user_email, user_password) VALUES ('${user_id}', '${user_email}', '${user_password}');`;
 
