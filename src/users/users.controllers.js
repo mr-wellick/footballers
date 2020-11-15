@@ -29,7 +29,13 @@ export const userRegister = async (req, res) => {
 
 export const userLogin = async (req, res) => {
   const { user_password } = req.body;
-  const hashed_password = res.locals.user.user_password;
+  const hashed_password = res.locals.user
+    ? res.locals.user.user_password
+    : undefined;
+
+  if (!hashed_password) {
+    return res.status(404).send('user does not exist');
+  }
 
   const [err, passwordMatch] = await promiseUtil(
     compare(user_password, hashed_password)
