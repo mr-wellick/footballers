@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "babel src --out-dir dist --ignore \"src/**/**/__tests__/\"",
-    "serve": "node dist/index.js",
+    "serve": "node dist/server.js",
     "restart": "rimraf dist && yarn build && yarn serve",
     "dev": "nodemon --exec yarn restart",
     "format": "prettier --write \"src/**/*.js\"",
