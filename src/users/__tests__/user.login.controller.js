@@ -1,4 +1,4 @@
-import app from '../../index.js';
+import app from '../../app.js';
 import request from 'supertest';
 
 test('validateInput middleware case: body is missing', () => {

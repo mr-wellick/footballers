@@ -2,7 +2,7 @@ import express from 'express';
 import {
   retrieveSeasons,
   retrieveSeason,
-  retrieveByPosition
+  retrieveByPosition,
 } from './footballers.controllers.js';
 
 const router = express.Router();

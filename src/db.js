@@ -4,5 +4,5 @@ export const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'root',
-  database: 'poc_config'
+  database: 'poc_config',
 });

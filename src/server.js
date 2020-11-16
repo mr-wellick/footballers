@@ -1,6 +1,6 @@
 import { db } from './db.js';
 import chalk from 'chalk';
-import app from './index.js';
+import app from './app.js';
 import {
   dropTable,
   createTable,

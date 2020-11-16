@@ -4,8 +4,8 @@ import { json } from 'body-parser';
 import { urlencoded } from 'body-parser';
 import morgan from 'morgan';
 import { config } from 'dotenv';
-import { footballersRouter } from './footballers/';
-import { userRouter } from './users/';
+import { footballersRouter } from './footballers';
+import { userRouter } from './users';
 
 // app initialization
 config();
