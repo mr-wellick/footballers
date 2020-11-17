@@ -1,8 +1,5 @@
-import util from 'util';
-import { db } from '../../db.js';
+import { query } from '../../db.js';
 import { promiseUtil } from '../../utilities/';
-
-const query = util.promisify(db.query).bind(db);
 
 const findUser = async (req, res, next) => {
   const { user_email } = req.body;

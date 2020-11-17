@@ -1,8 +1,5 @@
-import { db } from './src/db.js';
+import { db, query } from './src/db.js';
 import { promiseUtil } from './src/utilities/';
-import util from 'util';
-
-const query = util.promisify(db.query).bind(db);
 
 beforeAll(async () => {
   jest.useFakeTimers();

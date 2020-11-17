@@ -1,10 +1,9 @@
 import bcrypt from 'bcrypt';
-import { db } from '../db.js';
+import { query } from '../db.js';
 import { promiseUtil } from '../utilities';
 import { v4 as uuidv4 } from 'uuid';
 import util from 'util';
 
-const query = util.promisify(db.query).bind(db);
 const compare = util.promisify(bcrypt.compare);
 
 export const userRegister = async (req, res) => {

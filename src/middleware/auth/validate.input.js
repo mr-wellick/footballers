@@ -1,4 +1,5 @@
 import { validationResult } from 'express-validator';
+
 const validateInput = async (req, res, next) => {
   const errors = validationResult(req);
 
