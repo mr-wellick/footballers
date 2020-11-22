@@ -33,7 +33,7 @@ test('userLogin controller case: user does not exist', () => {
       .post(route)
       .send(body)
       .set('Accept', 'application/json')
-      // .expect('Content-Type', /json/)
+      .expect('Content-Type', /json/)
       .then((res) => {
         const { statusCode } = res;
 
@@ -55,7 +55,7 @@ test('userLogin controller case: wrong password', () => {
       .post(route)
       .send(body)
       .set('Accept', 'application/json')
-      // .expect('Content-Type', /json/)
+      .expect('Content-Type', /json/)
       .then((res) => {
         const { statusCode } = res;
 
@@ -77,7 +77,7 @@ test('userLogin controller case: successful login', () => {
       .post(route)
       .send(body)
       .set('Accept', 'application/json')
-      // .expect('Content-Type', /json/)
+      .expect('Content-Type', /json/)
       .then((res) => {
         const { statusCode } = res;
 

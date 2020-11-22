@@ -42,7 +42,6 @@ router.post(
       .escape(),
   ],
   validateInput,
-  findUser,
   userLogin
 );
 
