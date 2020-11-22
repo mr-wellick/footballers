@@ -1,7 +1,5 @@
 import express from 'express';
-import { hashPassword } from '../middleware/auth/';
 import { validateInput } from '../middleware/auth/';
-import { findUser } from '../middleware/sql-queries';
 import { userRegister, userLogin } from './users.controllers.js';
 import { body } from 'express-validator';
 
@@ -22,8 +20,6 @@ router.post(
       .escape(),
   ],
   validateInput,
-  findUser,
-  hashPassword,
   userRegister
 );
 

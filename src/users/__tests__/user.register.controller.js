@@ -21,7 +21,7 @@ test('validateInput middleware case: body is missing', () => {
   });
 });
 
-test('hashPassword middleware case: user exists', () => {
+test('cannot register a user if account exists already', () => {
   const route = '/api/v1/user/register';
   const body = {
     user_email: 'somename@gmail.com',
@@ -33,7 +33,7 @@ test('hashPassword middleware case: user exists', () => {
       .post(route)
       .send(body)
       .set('Accept', 'application/json')
-      //.expect('Content-Type', /json/)
+      .expect('Content-Type', /json/)
       .then((res) => {
         const { statusCode } = res;
 
@@ -57,10 +57,9 @@ test('registerUser controller case: register a user', async () => {
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .then((res) => {
-        const { statusCode, body } = res;
+        const { statusCode } = res;
 
         expect(statusCode).toBe(200);
-        console.log(body);
         done();
       });
   });

@@ -1,29 +1,34 @@
 import bcrypt from 'bcrypt';
-import { query } from '../db.js';
 import { promiseUtil } from '../utilities';
-import { v4 as uuidv4 } from 'uuid';
 import util from 'util';
-import { findUser } from '../middleware/sql-queries/index.js';
+import { findUser } from '../middleware/sql-queries';
+import { insertUser } from '../middleware/sql-queries';
 
 const compare = util.promisify(bcrypt.compare);
 
 export const userRegister = async (req, res) => {
-  const { user_email, user_password } = req.body;
-  const user_id = uuidv4();
-  const sql = `INSERT INTO poc_config.users (user_id, user_email, user_password) VALUES ('${user_id}', '${user_email}', '${user_password}');`;
+  const { user_email } = req.body;
+  const [foundUserError, foundUser] = await findUser(user_email);
 
-  const [err] = await promiseUtil(query(sql));
-
-  if (err) {
-    return res.status(400).send('create account error');
+  if (foundUserError || foundUser.length === 1) {
+    return res.status(401).send({
+      success: false,
+      message: 'Please check your login credentials and try again',
+    });
   }
 
-  const user = {
-    user_email,
-    user_id,
-  };
+  /* eslint-disable */
+  const [insertUserError, insertedUser] = await insertUser(req.body);
 
-  return res.status(200).send(user);
+  if (insertUserError) {
+    return res.status(400).send({
+      success: false,
+      message: 'Please check your login credentials and try again',
+    });
+  }
+
+  delete req.body.user_password;
+  return res.status(200).send(req.body);
 };
 
 export const userLogin = async (req, res) => {
