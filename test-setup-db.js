@@ -13,7 +13,7 @@ beforeAll(async () => {
 
   await promiseUtil(
     query(
-      'DELETE FROM poc_config.users WHERE user_email="newuser@gmail.com"'
+      'DELETE FROM poc_config.users WHERE user_email NOT IN("somename@gmail.com")'
     )
   );
 });
