@@ -26,8 +26,17 @@ export const userRegister = async (req, res) => {
     });
   }
 
-  delete req.body.user_password;
-  return res.status(200).send(req.body);
+  const [newUserError, newUser] = await findUser(req.body);
+
+  if (newUserError || !newUser) {
+    return res.status(404).send({
+      success: false,
+      message: 'Please check your login credentials and try again',
+    });
+  }
+
+  delete newUser[0].user_password;
+  return res.status(200).send(newUser[0]);
 };
 
 export const userLogin = async (req, res) => {
