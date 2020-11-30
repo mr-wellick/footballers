@@ -1,8 +1,8 @@
-import app from '../../app.js';
+import app from '../../../app';
 import request from 'supertest';
 
 test('validateInput middleware case: body is missing', () => {
-  const route = '/api/v1/user/login';
+  const route = '/api/v1/user/register';
   const body = {};
 
   return new Promise((done) => {
@@ -21,33 +21,11 @@ test('validateInput middleware case: body is missing', () => {
   });
 });
 
-test('userLogin controller case: user does not exist', () => {
-  const route = '/api/v1/user/login';
-  const body = {
-    user_email: 'test@test.com',
-    user_password: '12345678',
-  };
-
-  return new Promise((done) => {
-    request(app)
-      .post(route)
-      .send(body)
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .then((res) => {
-        const { statusCode } = res;
-
-        expect(statusCode).toBe(404);
-        done();
-      });
-  });
-});
-
-test('userLogin controller case: wrong password', () => {
-  const route = '/api/v1/user/login';
+test('cannot register a user if account exists already', () => {
+  const route = '/api/v1/user/register';
   const body = {
     user_email: 'somename@gmail.com',
-    user_password: '123456789',
+    user_password: '12345678',
   };
 
   return new Promise((done) => {
@@ -65,10 +43,10 @@ test('userLogin controller case: wrong password', () => {
   });
 });
 
-test('userLogin controller case: successful login', () => {
-  const route = '/api/v1/user/login';
+test('registerUser controller case: register a user', async () => {
+  const route = '/api/v1/user/register';
   const body = {
-    user_email: 'somename@gmail.com',
+    user_email: 'newuser@gmail.com',
     user_password: '12345678',
   };
 

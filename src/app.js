@@ -5,7 +5,7 @@ import { urlencoded } from 'body-parser';
 import morgan from 'morgan';
 import { config } from 'dotenv';
 import { footballersRouter } from './footballers';
-import { userRouter } from './users';
+import { userRouter } from './services';
 
 // app initialization
 config();
