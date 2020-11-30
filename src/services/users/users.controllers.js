@@ -8,7 +8,6 @@ const compare = util.promisify(bcrypt.compare);
 
 export const userRegister = async (req, res) => {
   const [foundUserError, foundUser] = await findUser(req.body);
-  console.log(foundUserError, foundUser);
 
   if (foundUserError || foundUser.length === 1) {
     return res.status(401).send({
