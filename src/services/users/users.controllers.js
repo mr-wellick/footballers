@@ -7,8 +7,8 @@ import { insertUser } from '../../sql-queries';
 const compare = util.promisify(bcrypt.compare);
 
 export const userRegister = async (req, res) => {
-  const { user_email } = req.body;
-  const [foundUserError, foundUser] = await findUser(user_email);
+  const [foundUserError, foundUser] = await findUser(req.body);
+  console.log(foundUserError, foundUser);
 
   if (foundUserError || foundUser.length === 1) {
     return res.status(401).send({
@@ -32,8 +32,7 @@ export const userRegister = async (req, res) => {
 };
 
 export const userLogin = async (req, res) => {
-  const { user_email, user_password } = req.body;
-  const [foundUserError, foundUser] = await findUser(user_email);
+  const [foundUserError, foundUser] = await findUser(req.body);
 
   if (foundUser.length === 0 || foundUserError) {
     return res.status(404).send({
@@ -43,7 +42,7 @@ export const userLogin = async (req, res) => {
   }
 
   const [passwordMatchErr, passwordMatch] = await promiseUtil(
-    compare(user_password, foundUser[0].user_password)
+    compare(req.body.user_password, foundUser[0].user_password)
   );
 
   if (!passwordMatch || passwordMatchErr) {
