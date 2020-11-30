@@ -1,7 +1,7 @@
 import { query } from '../db.js';
 import { promiseUtil } from '../utilities/';
 import { v4 as uuidv4 } from 'uuid';
-import hashPassword from '../auth/hash.password.js';
+import { hashPassword } from '../auth/';
 
 const insertUser = async (body) => {
   const { user_email, user_password } = body;

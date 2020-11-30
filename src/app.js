@@ -4,7 +4,6 @@ import { json } from 'body-parser';
 import { urlencoded } from 'body-parser';
 import morgan from 'morgan';
 import { config } from 'dotenv';
-import { footballersRouter } from './footballers';
 import { userRouter } from './services';
 
 // app initialization
@@ -18,7 +17,6 @@ app.use(cors());
 app.use(morgan('dev'));
 
 // routes
-app.use('/api/v1', footballersRouter);
 app.use('/api/v1/user', userRouter);
 
 export default app;
