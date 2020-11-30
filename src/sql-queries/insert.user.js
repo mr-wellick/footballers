@@ -1,5 +1,5 @@
-import { query } from '../../db.js';
-import { promiseUtil } from '../../utilities/';
+import { query } from '../db.js';
+import { promiseUtil } from '../utilities/';
 import { v4 as uuidv4 } from 'uuid';
 import hashPassword from '../auth/hash.password.js';
 

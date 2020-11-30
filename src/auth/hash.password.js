@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import util from 'util';
-import { promiseUtil } from '../../utilities/';
+import { promiseUtil } from '../utilities/';
 
 const hash = util.promisify(bcrypt.hash);
 const saltRounds = 10;

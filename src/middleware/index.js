@@ -1,2 +1,1 @@
-export { hashPassword } from './auth';
-export { validateInput } from './auth';
+export { default as validateInput } from './validate.input';

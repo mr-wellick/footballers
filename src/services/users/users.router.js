@@ -1,5 +1,5 @@
 import express from 'express';
-import { validateInput } from '../../middleware/auth/';
+import { validateInput } from '../../middleware/';
 import { userRegister, userLogin } from './users.controllers.js';
 import { body } from 'express-validator';
 
