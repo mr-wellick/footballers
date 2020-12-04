@@ -28,7 +28,7 @@ export const userRegister = async (req, res) => {
 
   const [newUserError, newUser] = await findUser(req.body);
 
-  if (newUserError || !newUser) {
+  if (newUserError || newUser.length !== 1) {
     return res.status(404).send({
       success: false,
       message: 'Please check your login credentials and try again',
@@ -36,7 +36,12 @@ export const userRegister = async (req, res) => {
   }
 
   delete newUser[0].user_password;
-  return res.status(200).send(newUser[0]);
+  return res.status(200).send({
+    success: true,
+    user: {
+      ...newUser[0],
+    },
+  });
 };
 
 export const userLogin = async (req, res) => {
@@ -61,5 +66,8 @@ export const userLogin = async (req, res) => {
   }
 
   delete foundUser[0].user_password;
-  return res.status(200).send(foundUser[0]);
+  return res.status(200).send({
+    success: true,
+    user: { ...foundUser[0] },
+  });
 };
