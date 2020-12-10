@@ -4,7 +4,7 @@
 </p>
 
 <div >
-  [![Actions Status](https://github.com/{mr-wellick}/{footballers}/workflows/{actions}/badge.svg)](https://github.com/{mr-wellick}/{footballers}/actions)
+  <img src="https://github.com/mr-wellick/footballers/workflows/action/badge.svg">
 </div>
 
 # Introduction
