@@ -5,6 +5,7 @@
 
 <div>
   <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/mr-wellick/footballers/footballers-flow?style=flat-square">
+  https://github.com/mr-wellick/footballers/workflows/footballers-flow/badge.svg
 </div>
 
 # Introduction
