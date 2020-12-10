@@ -1,7 +1,11 @@
 <h1 align="center">Footballers</h1>
 <p align="center">
-  A Node.js back-end to explore football statistics.
+  A Node.js back-end to explore football statistics for barcelona (for now).
 </p>
+
+<div>
+  <img alt="GitHub Workflow Status" src="https://github.com/mr-wellick/footballers/workflows/footballers-flow/badge.svg">
+</div>
 
 # Introduction
 
@@ -10,4 +14,3 @@
     - With the help of Node.js and D3.js, loaded each csv file into memory to
       programmatically generate SQL commands.
     - Finally, connected to MySQL locally and processed SQL commands to set up tables.
-   

@@ -7,7 +7,6 @@
     "format": "prettier --write \"src/**/*.js\"",
     "format:check": "prettier --list-different \"src/**/*.js\"",
     "lint": "eslint \"src/**/{*.js,}\" --quiet --fix",
-    "validate": "yarn run format:check && yarn run lint",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "test:coverage": "cat ./coverage/lcov.info | codecov"

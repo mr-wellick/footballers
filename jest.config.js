@@ -9,10 +9,10 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/test-setup-db.js'],
   coverageThreshold: {
     global: {
-      statements: 75,
-      branches: 75,
-      functions: 75,
-      lines: 75,
+      statements: 65,
+      branches: 65,
+      functions: 65,
+      lines: 65,
     },
   },
 };
