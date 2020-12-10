@@ -3,8 +3,8 @@
   A Node.js back-end to explore football statistics.
 </p>
 
-<div >
-  <img src="https://github.com/mr-wellick/footballers/workflows/actions/badge.svg">
+<div>
+  ![example workflow name](https://github.com/actions/hello-world/workflows/Greet%20Everyone/badge.svg)"
 </div>
 
 # Introduction
