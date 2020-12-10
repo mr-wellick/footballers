@@ -4,7 +4,7 @@
 </p>
 
 <div >
-  <img src="https://github.com/mr-wellick/footballers/workflows/action/badge.svg">
+  <img src="https://github.com/mr-wellick/footballers/workflows/actions/badge.svg">
 </div>
 
 # Introduction
