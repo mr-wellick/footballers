@@ -4,7 +4,7 @@
 </p>
 
 <div>
-  ![example workflow name](https://github.com/actions/hello-world/workflows/Greet%20Everyone/badge.svg)
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/mr-wellick/footballers/footballers-flow?style=flat-square">
 </div>
 
 # Introduction
