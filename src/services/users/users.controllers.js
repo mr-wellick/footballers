@@ -38,9 +38,7 @@ export const userRegister = async (req, res) => {
   delete newUser[0].user_password;
   return res.status(200).send({
     success: true,
-    user: {
-      ...newUser[0],
-    },
+    user: newUser[0],
   });
 };
 
@@ -68,6 +66,6 @@ export const userLogin = async (req, res) => {
   delete foundUser[0].user_password;
   return res.status(200).send({
     success: true,
-    user: { ...foundUser[0] },
+    user: foundUser[0],
   });
 };
