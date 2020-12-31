@@ -26,7 +26,7 @@ export const retrieveSeason = async (req, res) => {
     return res.status(404).send('Cannot retrieve season');
   }
 
-  return res.status(200).send(data);
+  return res.status(200).send({ season: data });
 };
 
 export const retrieveByPosition = async (req, res) => {
