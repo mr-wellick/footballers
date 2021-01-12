@@ -1,12 +1,6 @@
 import { db } from './db.js';
 import chalk from 'chalk';
 import app from './app.js';
-import {
-  dropTable,
-  createTable,
-  insertIntoTable,
-  checkBeforeRunningQueries,
-} from './create-db.js';
 
 const port = process.env.PORT || 5000;
 
@@ -18,13 +12,6 @@ db.connect((err) => {
   return console.log('connected as id ' + db.threadId);
 });
 
-if (checkBeforeRunningQueries() === false) {
-  dropTable();
-  createTable();
-  insertIntoTable();
-}
-
-// listen to server
 app.listen(port, () => {
   console.log(chalk.cyan(`Listening on port: ${port}`));
 });
