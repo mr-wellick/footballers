@@ -4,7 +4,3 @@ dist
 .env
 coverage
 yarn-error.log
-.RData
-.RHistory
-src/data
-src/create-db.js
