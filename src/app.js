@@ -1,19 +1,18 @@
 import express from 'express';
 import cors from 'cors';
-import { json } from 'body-parser';
-import { urlencoded } from 'body-parser';
+import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import { config } from 'dotenv';
-import { userRouter } from './services';
-import { footballersRouter } from './services';
+import { userRouter } from './services/users/index.js';
+import { footballersRouter } from './services/footballers/index.js';
 
 // app initialization
 config();
 const app = express();
 
 // add base middleware
-app.use(json());
-app.use(urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(morgan('dev'));
 

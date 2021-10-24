@@ -1,9 +1,6 @@
 {
   "scripts": {
-    "build": "babel src --out-dir dist --ignore \"src/**/**/__tests__/\"",
-    "serve": "node dist/server.js",
-    "restart": "rimraf dist && yarn build && yarn serve",
-    "dev": "nodemon --exec yarn restart",
+    "dev": "nodemon --exec yarn node src/server.js",
     "format": "prettier --write \"src/**/*.js\"",
     "format:check": "prettier --list-different \"src/**/*.js\"",
     "lint": "eslint \"src/**/{*.js,}\" --quiet --fix",
@@ -13,6 +10,7 @@
   },
   "name": "footballers",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "author": "Pablo Lorenzo",
   "license": "GPL-3.0",

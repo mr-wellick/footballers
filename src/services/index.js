@@ -1,2 +1,2 @@
-export { userRouter } from './users';
-export { footballersRouter } from './footballers';
+export { userRouter } from './users/index.js';
+export { footballersRouter } from './footballers/index.js';

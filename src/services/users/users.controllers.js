@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
-import { promiseUtil } from '../../utilities';
+import { promiseUtil } from '../../utilities/index.js';
 import util from 'util';
-import { findUser } from '../../sql-queries';
-import { insertUser } from '../../sql-queries';
+import { findUser } from '../../sql-queries/index.js';
+import { insertUser } from '../../sql-queries/index.js';
 
 const compare = util.promisify(bcrypt.compare);
 

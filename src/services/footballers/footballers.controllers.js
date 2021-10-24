@@ -1,5 +1,5 @@
 import { query } from '../../db.js';
-import { promiseUtil } from '../../utilities';
+import { promiseUtil } from '../../utilities/index.js';
 
 export const retrieveSeasons = async (req, res) => {
   /* eslint-disable */
