@@ -14,7 +14,7 @@ test('after a successful api call, err should be undefined and data should be a 
 test('after an unsuccessful api call, err should be a valid value to work with and data should be undefined', async () => {
   const [err, data] = await promiseUtil(
     new Promise((resolve, reject) => {
-      reject('this is my error');
+      reject(new Error('this is my error'));
     })
   );
 

@@ -3,7 +3,7 @@ import { validateInput } from '../../middleware/index.js';
 import { userRegister, userLogin } from './users.controllers.js';
 import { body } from 'express-validator';
 
-const router = express.Router();
+const router = new express.Router();
 
 /*
  * @route  POST api/v1/user/register
