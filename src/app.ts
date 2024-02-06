@@ -2,7 +2,7 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
-import footballersRouter from './services/footballers/footballers.router.ts';
+import footballersRouter from './services/footballers/footballers.router.js';
 
 const app: Application = express();
 

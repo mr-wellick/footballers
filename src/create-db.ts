@@ -4,7 +4,7 @@ import chalk from 'chalk';
 import { promisify } from 'util';
 import { csvParse } from 'd3-dsv';
 import { fileURLToPath } from 'url';
-import client from './db.ts';
+import client from './db.js';
 
 const __dirname = fileURLToPath(import.meta.url);
 

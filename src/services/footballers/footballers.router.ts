@@ -1,5 +1,5 @@
 import express from 'express';
-import { retrieveSeason } from './footballers.controllers.ts';
+import { retrieveSeason } from './footballers.controllers.js';
 
 const Router = express.Router();
 

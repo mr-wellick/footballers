@@ -1,6 +1,6 @@
 import chalk from 'chalk';
-import app from './app.ts';
-import client from './db.ts';
+import app from './app.js';
+import client from './db.js';
 import {
   checkBeforeRunningQueries,
   createTable,

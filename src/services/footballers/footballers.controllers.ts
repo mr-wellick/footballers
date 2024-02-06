@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import client from '../../db.ts';
+import client from '../../db.js';
 
 export const retrieveSeason = async (req: Request, res: Response) => {
   const { season } = req.body;

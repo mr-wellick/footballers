@@ -12,7 +12,7 @@
   },
   "name": "footballers",
   "version": "1.0.0",
-  "main": "src/server.js",
+  "main": "dist/server.js",
   "author": "Mr. Wellick",
   "license": "GPL-3.0",
   "type": "module",
