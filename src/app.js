@@ -6,7 +6,6 @@ import { config } from 'dotenv';
 import { userRouter } from './services/users/index.js';
 //import { footballersRouter } from './services/footballers/index.js';
 
-// app initialization
 config();
 const app = express();
 
