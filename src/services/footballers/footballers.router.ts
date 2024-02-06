@@ -1,10 +1,7 @@
 import express from 'express';
-import {
-  retrieveSeason,
-  //  retrieveByPosition,
-} from './footballers.controllers.js';
+import { retrieveSeason } from './footballers.controllers.ts';
 
-const Router = new express.Router();
+const Router = express.Router();
 
 /*
  * @route  GET api/v1/season

@@ -3,33 +3,34 @@ import path from 'path';
 import chalk from 'chalk';
 import { promisify } from 'util';
 import { csvParse } from 'd3-dsv';
-import client from './db.js';
 import { fileURLToPath } from 'url';
+import client from './db.ts';
 
 const __dirname = fileURLToPath(import.meta.url);
 
-const logger = (message, sqlQuery) =>
+const logger = (message: string, sqlQuery: string) =>
   console.log(message, chalk.cyan(sqlQuery));
 const readFile = promisify(fs.readFile);
 const readDir = promisify(fs.readdir);
 
-const getFileNames = async () => {
+async function getFileNames(): Promise<string[] | unknown> {
   const files = await readDir(path.join(__dirname, '../data'));
+  let filteredFiles: string[] = [];
+
   try {
-    const filteredFiles = files.filter((file) =>
-      file.includes('csv'),
-    );
-    return filteredFiles;
+    filteredFiles = files.filter((file) => file.includes('csv'));
   } catch (err) {
     return err;
   }
-};
+
+  return filteredFiles;
+}
 
 export const dropTable = async () => {
-  const files = await getFileNames();
+  const files = (await getFileNames()) as string[];
+
   const sqlCommands = files.map(
-    (file) =>
-      `DROP TABLE IF EXISTS season_${file.split('.')[0]};`,
+    (file) => `DROP TABLE IF EXISTS season_${file.split('.')[0]};`,
   );
 
   try {
@@ -39,15 +40,16 @@ export const dropTable = async () => {
         return await client.query(command);
       }),
     );
-    return;
   } catch (err) {
     console.log('Failed to drop tables.', err);
     return;
   }
+
+  return;
 };
 
 export const createTable = async () => {
-  const files = await getFileNames();
+  const files = (await getFileNames()) as string[];
 
   try {
     for (const file of files) {
@@ -55,13 +57,11 @@ export const createTable = async () => {
         path.join(__dirname, `../data/${file}`),
         'utf8',
       );
-      const parsedData = csvParse(contents);
-      const rows = parsedData['columns']
+      const data = csvParse(contents).columns;
+      const rows = data
         .map((row) => `${row} VARCHAR(255)`)
         .join(', ');
-      const sql = `CREATE TABLE season_${
-        file.split('.')[0]
-      }(${rows});`;
+      const sql = `CREATE TABLE season_${file.split('.')[0]}(${rows});`;
       logger('CREATING TABLE: ', sql);
       await client.query(sql);
     }
@@ -69,10 +69,12 @@ export const createTable = async () => {
     console.error('Cannot create table', err);
     return;
   }
+
+  return;
 };
 
 export const insertIntoTable = async () => {
-  const files = await getFileNames();
+  const files = (await getFileNames()) as string[];
 
   try {
     for (const file of files) {
@@ -80,23 +82,21 @@ export const insertIntoTable = async () => {
         path.join(__dirname, `../data/${file}`),
         'utf8',
       );
-      const parsedData = csvParse(contents);
-      const rows = parsedData['columns'].join(', ');
+      const data = csvParse(contents).columns;
+      const rows = data.join(', ');
 
-      parsedData.forEach(async (item) => {
+      data.forEach(async (item) => {
         const values = Object.values(item)
           .map((value) => `'${value}'`)
           .join(', ');
-        const sql = `INSERT INTO season_${
-          file.split('.')[0]
-        }(${rows}) VALUES (${values});`;
+        const sql = `INSERT INTO season_${file.split('.')[0]}(${rows}) VALUES (${values});`;
         logger('INSERTING INTO TABLE: ', sql);
         await client.query(sql);
       });
     }
     return;
   } catch (err) {
-    console.err('Cannot insert values into table', err);
+    console.log('Cannot insert values into table', err);
     return;
   }
 };
@@ -111,7 +111,7 @@ export const checkBeforeRunningQueries = async () => {
       return true;
     }
   } catch (err) {
-    console.err(err);
+    console.log(err);
     return false;
   }
 

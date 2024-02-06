@@ -1,6 +1,7 @@
-import client from '../../db.js';
+import { Request, Response } from 'express';
+import client from '../../db.ts';
 
-export const retrieveSeason = async (req, res) => {
+export const retrieveSeason = async (req: Request, res: Response) => {
   const { season } = req.body;
   const sql = `select * from ${season}`;
 
