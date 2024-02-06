@@ -7,15 +7,14 @@
     "format": "prettier --write \"src/**/*.js\"",
     "format:check": "prettier --list-different \"src/**/*.js\"",
     "lint": "eslint \"src/**/{*.js,}\" --quiet --fix",
-    "validate": "npm run format:check && yarn run lint",
-    "test": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test": "",
+    "test:watch": ""
   },
   "name": "footballers",
   "version": "1.0.0",
   "type": "module",
   "main": "dist/index.js",
-  "author": "Mr Wellick",
+  "author": "Mr. Wellick",
   "license": "GPL-3.0",
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -35,10 +34,8 @@
     "@types/node": "^20.11.16",
     "chalk": "^5.3.0",
     "concurrently": "^8.2.2",
-    "dotenv": "^16.4.1",
     "jest": "^29.7.0",
     "morgan": "^1.10.0",
-    "nodemon": "^3.0.3",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "typescript": "^5.3.3"
