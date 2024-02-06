@@ -64,6 +64,9 @@ export const userLogin = async (req, res) => {
   }
 
   delete foundUser[0].user_password;
+  req.session.key = foundUser[0];
+  console.log(req.session);
+
   return res.status(200).send({
     success: true,
     user: foundUser[0],

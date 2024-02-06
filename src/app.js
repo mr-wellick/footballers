@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import { config } from 'dotenv';
 import { userRouter } from './services/users/index.js';
 import { footballersRouter } from './services/footballers/index.js';
+import { userRouter } from './services';
 
 // app initialization
 config();
