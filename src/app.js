@@ -3,11 +3,8 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import { config } from 'dotenv';
-<<<<<<< HEAD
 import { userRouter } from './services/users/index.js';
 import { footballersRouter } from './services/footballers/index.js';
-=======
->>>>>>> 823be21 (reset project)
 import { userRouter } from './services';
 
 // app initialization
