@@ -4,8 +4,7 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import { config } from 'dotenv';
 import { userRouter } from './services/users/index.js';
-import { footballersRouter } from './services/footballers/index.js';
-import { userRouter } from './services';
+//import { footballersRouter } from './services/footballers/index.js';
 
 // app initialization
 config();
@@ -19,6 +18,6 @@ app.use(morgan('dev'));
 
 // routes
 app.use('/api/v1/user', userRouter);
-app.use('/api/v1/footballers', footballersRouter);
+//app.use('/api/v1/footballers', footballersRouter);
 
 export default app;

@@ -1,21 +1,23 @@
 import fs from 'fs';
-import { promisify } from 'util';
-import { db } from './db.js';
 import path from 'path';
-import { csvParse } from 'd3-dsv';
 import chalk from 'chalk';
+import { promisify } from 'util';
+import { csvParse } from 'd3-dsv';
+import client from './db.js';
+import { fileURLToPath } from 'url';
+
+const __dirname = fileURLToPath(import.meta.url);
 
 const logger = (message, sqlQuery) =>
   console.log(message, chalk.cyan(sqlQuery));
-const query = promisify(db.query).bind(db);
 const readFile = promisify(fs.readFile);
 const readDir = promisify(fs.readdir);
 
 const getFileNames = async () => {
-  const files = await readDir(path.join(__dirname, '../src/data'));
+  const files = await readDir(path.join(__dirname, '../data'));
   try {
     const filteredFiles = files.filter((file) =>
-      file.includes('csv')
+      file.includes('csv'),
     );
     return filteredFiles;
   } catch (err) {
@@ -27,15 +29,15 @@ export const dropTable = async () => {
   const files = await getFileNames();
   const sqlCommands = files.map(
     (file) =>
-      `DROP TABLE IF EXISTS poc_config.season_${file.split('.')[0]};`
+      `DROP TABLE IF EXISTS season_${file.split('.')[0]};`,
   );
 
   try {
     await Promise.all(
       sqlCommands.map(async (command) => {
         logger('DROPPING THE FOLLOWING TABLE: ', command);
-        return await query(command);
-      })
+        return await client.query(command);
+      }),
     );
     return;
   } catch (err) {
@@ -50,18 +52,18 @@ export const createTable = async () => {
   try {
     for (const file of files) {
       const contents = await readFile(
-        path.join(__dirname, `../src/data/${file}`),
-        'utf8'
+        path.join(__dirname, `../data/${file}`),
+        'utf8',
       );
       const parsedData = csvParse(contents);
       const rows = parsedData['columns']
         .map((row) => `${row} VARCHAR(255)`)
         .join(', ');
-      const sql = `CREATE TABLE poc_config.season_${
+      const sql = `CREATE TABLE season_${
         file.split('.')[0]
       }(${rows});`;
       logger('CREATING TABLE: ', sql);
-      query(sql);
+      await client.query(sql);
     }
   } catch (err) {
     console.error('Cannot create table', err);
@@ -75,21 +77,21 @@ export const insertIntoTable = async () => {
   try {
     for (const file of files) {
       const contents = await readFile(
-        path.join(__dirname, `../src/data/${file}`),
-        'utf8'
+        path.join(__dirname, `../data/${file}`),
+        'utf8',
       );
       const parsedData = csvParse(contents);
       const rows = parsedData['columns'].join(', ');
 
-      parsedData.forEach((item) => {
+      parsedData.forEach(async (item) => {
         const values = Object.values(item)
           .map((value) => `'${value}'`)
           .join(', ');
-        const sql = `INSERT INTO poc_config.season_${
+        const sql = `INSERT INTO season_${
           file.split('.')[0]
         }(${rows}) VALUES (${values});`;
         logger('INSERTING INTO TABLE: ', sql);
-        query(sql);
+        await client.query(sql);
       });
     }
     return;
@@ -100,14 +102,18 @@ export const insertIntoTable = async () => {
 };
 
 export const checkBeforeRunningQueries = async () => {
-  const res = await query('SHOW TABLES LIKE "%season%";');
+  const res = await client.query(
+    "SELECT table_name FROM information_schema.tables WHERE table_schema='public'",
+  );
 
   try {
-    if (res.length > 0) {
+    if (res.rows.length > 0) {
       return true;
     }
   } catch (err) {
     console.err(err);
     return false;
   }
+
+  return false;
 };
