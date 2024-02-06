@@ -9,15 +9,14 @@ const compare = util.promisify(bcrypt.compare);
 export const userRegister = async (req, res) => {
   const [foundUserError, foundUser] = await findUser(req.body);
 
-  if (foundUserError || foundUser.length === 1) {
+  if (foundUserError || foundUser.rows.length === 1) {
     return res.status(401).send({
       success: false,
       message: 'Please check your login credentials and try again',
     });
   }
 
-  /* eslint-disable */
-  const [insertUserError, insertedUser] = await insertUser(req.body);
+  const [insertUserError] = await insertUser(req.body);
 
   if (insertUserError) {
     return res.status(400).send({
@@ -26,20 +25,10 @@ export const userRegister = async (req, res) => {
     });
   }
 
-  const [newUserError, newUser] = await findUser(req.body);
+  const [, newUser] = await findUser(req.body);
+  console.log(newUser);
 
-  if (newUserError || newUser.length !== 1) {
-    return res.status(404).send({
-      success: false,
-      message: 'Please check your login credentials and try again',
-    });
-  }
-
-  delete newUser[0].user_password;
-  return res.status(200).send({
-    success: true,
-    user: newUser[0],
-  });
+  return res.status(200).send({});
 };
 
 export const userLogin = async (req, res) => {
@@ -53,7 +42,7 @@ export const userLogin = async (req, res) => {
   }
 
   const [passwordMatchErr, passwordMatch] = await promiseUtil(
-    compare(req.body.user_password, foundUser[0].user_password)
+    compare(req.body.user_password, foundUser[0].user_password),
   );
 
   if (!passwordMatch || passwordMatchErr) {
@@ -64,6 +53,7 @@ export const userLogin = async (req, res) => {
   }
 
   delete foundUser[0].user_password;
+
   return res.status(200).send({
     success: true,
     user: foundUser[0],

@@ -1,11 +1,11 @@
-import mysql from 'mysql';
-import util from 'util';
+import pg from 'pg';
 
-export const db = mysql.createConnection({
+const client = new pg.Client({
   host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'poc_config',
+  port: 5432,
+  database: process.env.POSTGRES_DATABASE,
+  user: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
 });
 
-export const query = util.promisify(db.query).bind(db);
+export default client;
