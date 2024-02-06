@@ -1,18 +1,10 @@
 import express from 'express';
 import {
-  retrieveSeasons,
   retrieveSeason,
-  retrieveByPosition,
+  //  retrieveByPosition,
 } from './footballers.controllers.js';
 
 const Router = new express.Router();
-
-/*
- * @route  GET api/v1/seasons
- * @desc   Retrieve all seasons
- * @access Public
- */
-Router.get('/seasons', retrieveSeasons);
 
 /*
  * @route  GET api/v1/season
@@ -21,11 +13,11 @@ Router.get('/seasons', retrieveSeasons);
  */
 Router.post('/season', retrieveSeason);
 
-/*
- * @route  GET api/v1/position
- * @desc   Retrieve players by position for specified season
- * @access Public
- */
-Router.post('/position', retrieveByPosition);
+///*
+// * @route  GET api/v1/position
+// * @desc   Retrieve players by position for specified season
+// * @access Public
+// */
+//Router.post('/position', retrieveByPosition);
 
 export default Router;
