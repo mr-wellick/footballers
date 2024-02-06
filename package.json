@@ -1,12 +1,12 @@
 {
   "scripts": {
     "serve": "node --env-file=.env dist/server.js",
-    "build": "tsc src/server.ts",
+    "build": "tsc",
     "restart": "rimraf dist && npm run build && npm run serve",
-    "dev": "nodemon --watch src --ext ts,js --exec npm run serve",
-    "format": "prettier --write \"src/**/*.js\"",
-    "format:check": "prettier --list-different \"src/**/*.js\"",
-    "lint": "eslint \"src/**/{*.js,}\" --quiet --fix",
+    "dev": "nodemon --watch src --ext ts --exec npm run restart",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --list-different \"src/**/*.ts\"",
+    "lint": "tsc --noEmit true",
     "test": "",
     "test:watch": ""
   },
