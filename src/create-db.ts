@@ -14,7 +14,7 @@ const readFile = promisify(fs.readFile);
 const readDir = promisify(fs.readdir);
 
 async function getFileNames(): Promise<string[] | unknown> {
-  const files = await readDir(path.join(__dirname, '../data'));
+  const files = await readDir(path.join(__dirname, '../../src/data'));
   let filteredFiles: string[] = [];
 
   try {
@@ -54,7 +54,7 @@ export const createTable = async () => {
   try {
     for (const file of files) {
       const contents = await readFile(
-        path.join(__dirname, `../data/${file}`),
+        path.join(__dirname, `../../src/data/${file}`),
         'utf8',
       );
       const data = csvParse(contents).columns;
@@ -79,11 +79,11 @@ export const insertIntoTable = async () => {
   try {
     for (const file of files) {
       const contents = await readFile(
-        path.join(__dirname, `../data/${file}`),
+        path.join(__dirname, `../../src/data/${file}`),
         'utf8',
       );
-      const data = csvParse(contents).columns;
-      const rows = data.join(', ');
+      const data = csvParse(contents);
+      const rows = data.columns.join(', ');
 
       data.forEach(async (item) => {
         const values = Object.values(item)

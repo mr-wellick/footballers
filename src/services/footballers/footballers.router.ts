@@ -17,11 +17,4 @@ Router.post(
   retrieveSeason,
 );
 
-///*
-// * @route  GET api/v1/position
-// * @desc   Retrieve players by position for specified season
-// * @access Public
-// */
-//Router.post('/position', retrieveByPosition);
-
 export default Router;
