@@ -1,0 +1,44 @@
+<div class="stats shadow">
+     <div class="stat">
+        <div class="stat-title">Barcelona</div>
+        <svg height="<%= dim.height %>" width=" <%= dim.width %>">
+            <g transform=translate(0,<%=dim.height - dim.padding %>) >
+               <% data.map(item => { %>
+                <g transform="translate(<%=xScale(item.name) %>, 0)" >
+                <!--
+                    <line y2="<%= -dim.height + dim.padding * dim.scaleBy %>" stroke="#000"/>
+                -->
+                    <text class="text-sm">
+                        <%= item.name[0] %>
+                    </text>
+                </g>
+               <% }); %>
+            </g>
+            <g transform="translate(<%= dim.padding %>, 0)" >
+               <% yScale.ticks(10).map(tick => { %>
+                <g transform="translate(0, <%=yScale(tick) %>)" >
+                <!--
+                    <line x2="<%= dim.width - dim.padding * dim.scaleBy %>" stroke="#000"/>
+                -->
+                    <text class="text-sm">
+                        <%= tick %>
+                    </text>
+                </g>
+               <% }); %>
+            </g>
+            <g>
+               <% data.map((datum) => { %>
+                    <g>
+                        <circle
+                          cx=<%= xScale(datum.name) %>
+                          cy=<%= yScale(datum.g) %>
+                          r="10"
+                          fill="#DCC8E0"
+                          opacity="0.9"
+                        />
+                    <g/>
+                <% }); %>
+            </g>
+        </svg>
+  </div>
+</div>
