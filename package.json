@@ -3,7 +3,7 @@
     "serve": "node --env-file=.env dist/server.js",
     "build": "tsc",
     "restart": "rimraf dist && npm run build && npm run serve",
-    "dev": "nodemon --watch src --exec npm run restart",
+    "dev": "nodemon --watch src --ext ts --exec npm run restart",
     "format": "prettier --write \"src/**/*.ts\"",
     "format:check": "prettier --list-different \"src/**/*.ts\"",
     "lint": "tsc --noEmit true",
