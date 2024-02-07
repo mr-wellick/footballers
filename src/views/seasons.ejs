@@ -1,0 +1,13 @@
+<select
+    hx-post="/api/v1/footballers/season" 
+    hx-target="#results" hx-triggrer="change" 
+    class="select select-sm select-accent w-full max-w-xs"
+    name="season"
+>
+   <option disabled selected>Select a season</option>
+   <% data.forEach(function(item){ %>
+         <option value=<%= item.table_name %> ><%= item.table_name %></option>
+  <% }); %>
+</select>
+
+<div id="results"></div>
