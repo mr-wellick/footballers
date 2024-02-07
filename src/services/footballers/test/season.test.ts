@@ -1,46 +1,46 @@
-import { describe, it } from 'node:test';
+import test from 'node:test';
 import request from 'supertest';
 import app from '../../../app.js';
-import assert from 'node:assert';
+import assert from 'node:assert/strict';
 
-describe('retrieve season ', () => {
-  it('has a missing body', () => {
-    const route = '/api/v1/footballers/season';
-    const body = {};
+test('retrieve season with no body', async () => {
+  const route = '/api/v1/footballers/season';
+  const body = {};
 
-    new Promise<void>((resolve) => {
-      request(app)
-        .post(route)
-        .send(body)
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .then((req) => {
-          const { statusCode, body } = req;
+  const response = await request(app)
+    .post(route)
+    .send(body)
+    .set('Accept', 'application/json');
 
-          assert.equal(statusCode, 400);
-          assert.equal(body.errors.length, 1);
-          resolve();
-        });
-    });
-  });
+  assert.match(response.header['content-type'], /json/);
+  assert.equal(response.statusCode, 400);
+  assert.equal(response.body.errors.length, 1);
+});
 
-  it('has an invalid input', () => {
-    const route = '/api/v1/footballers/season';
-    const body = { season: 'invalid_value' };
+test('retrieve season with invalid value', async () => {
+  const route = '/api/v1/footballers/season';
+  const body = { season: 'invalid_value' };
 
-    new Promise<void>((resolve) => {
-      request(app)
-        .post(route)
-        .send(body)
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .then((req) => {
-          const { statusCode, body } = req;
+  const response = await request(app)
+    .post(route)
+    .send(body)
+    .set('Accept', 'application/json');
 
-          assert.equal(statusCode, 404);
-          assert.equal(body.errors.length, 0);
-          resolve();
-        });
-    });
-  });
+  assert.match(response.header['content-type'], /json/);
+  assert.equal(response.statusCode, 404);
+  assert.equal(response.body.errors.length, 0);
+});
+
+test('retrieve season with a valid value', async () => {
+  const route = '/api/v1/footballers/season';
+  const body = { season: 'season_2004' };
+
+  const response = await request(app)
+    .post(route)
+    .send(body)
+    .set('Accept', 'application/json');
+
+  assert.match(response.header['content-type'], /json/);
+  assert.equal(response.statusCode, 200);
+  assert.equal(response.body.errors.length, 0);
 });
