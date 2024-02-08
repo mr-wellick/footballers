@@ -3,7 +3,7 @@ library("dplyr")
 library("stringr")
 
 # mention <- "gets" operator
-extract_season_data <- function(url) {
+extract_season_data = function(url) {
   season_table = read_html(url)
   
   col_names = season_table %>% html_nodes(".players .dib") %>% html_text()
@@ -27,11 +27,13 @@ season_urls = paste(base_url, sep = "", season_years)
 season_list = lapply(season_urls, extract_season_data)
 View(season_list[[1]])
 
-lapply(1:length(season_years), function(index) {
+
+for (index in 1:length(season_years)) {
   write.csv(
     season_list[[index]], 
     file = paste(season_years[index], sep = '', '.csv'), 
     row.names = F
-    )
-})
+  )
+}
+
 
