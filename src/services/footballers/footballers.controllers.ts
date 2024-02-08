@@ -18,18 +18,20 @@ export const retrieveSeason = async (req: Request, res: Response) => {
     });
   }
 
-  const dim = { width: 1500, height: 500, padding: 100, scaleBy: 2 };
+  // filter out any players with 0 goals in data
+  const filteredData = result.rows.filter((item) => item.g != 0);
+  const dim = { width: 1300, height: 500, padding: 100, scaleBy: 2 };
   const xScale = scalePoint()
-    .domain(result.rows.map((item) => item.name))
+    .domain(filteredData.map((item) => item.name))
     .range([dim.padding, dim.width - dim.padding]);
   const yScale = scaleLinear()
-    .domain([0, Math.max(...result.rows.map((item) => item.g))])
+    .domain([0, Math.max(...filteredData.map((item) => item.g))])
     .range([dim.height - dim.padding, dim.padding]);
 
   return res.status(200).render('graph', {
-    code: 200,
-    message: 'success',
-    data: result.rows,
+    data: filteredData,
+    players: result.rows.map((item) => item.num + ': ' + item.name),
+    season,
     dim,
     xScale,
     yScale,
@@ -51,9 +53,5 @@ export const retrieveSeasons = async (_: Request, res: Response) => {
     });
   }
 
-  return res.status(200).render('seasons', {
-    code: 200,
-    message: 'success',
-    data: result.rows,
-  });
+  return res.status(200).render('seasons', { data: result.rows });
 };
