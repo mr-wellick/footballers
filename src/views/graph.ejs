@@ -23,6 +23,7 @@
             </div>
             <svg height="<%= dim.height %>" width=" <%= dim.width %>">
                 <g transform=translate(0,<%=dim.height - dim.padding %>) >
+                   <path d="<%= getD(xScale) %>"/>
                    <% data.map(item => { %>
                     <g transform="translate(<%=xScale(item.name) %>, 0)" >
                         <!--

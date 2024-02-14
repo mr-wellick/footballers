@@ -1,6 +1,20 @@
 import { Request, Response } from 'express';
 import client from '../../db.js';
-import { scaleLinear, scalePoint } from 'd3-scale';
+import { type ScaleLinear, scaleLinear, scalePoint } from 'd3-scale';
+
+function getD(xScale: ScaleLinear<number, number>) {
+  const range0 = xScale.range()[0];
+  const range1 = xScale.range()[1];
+  const k = 1;
+  const tickSizeOuter = 1;
+  const offset = 0;
+
+  const d = `M${range0},${k * tickSizeOuter}V${offset}H${range1}V${
+    k * tickSizeOuter
+  }`;
+
+  return d;
+}
 
 export const retrieveSeason = async (req: Request, res: Response) => {
   const { season } = req.body;
@@ -18,7 +32,6 @@ export const retrieveSeason = async (req: Request, res: Response) => {
     });
   }
 
-  // filter out any players with 0 goals in data
   const filteredData = result.rows.filter((item) => item.g != 0);
   const dim = { width: 1300, height: 500, padding: 100, scaleBy: 2 };
   const xScale = scalePoint()
@@ -35,6 +48,7 @@ export const retrieveSeason = async (req: Request, res: Response) => {
     dim,
     xScale,
     yScale,
+    getD,
   });
 };
 
