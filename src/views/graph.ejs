@@ -1,18 +1,20 @@
 <% if(data.length === 0) { %>
-    <div class="chat chat-start">
-      <div class="chat-bubble chat-bubble-primary">
-          Looks like
-      </div>
-    </div>
-    <div class="chat chat-end">
-      <div class="chat-bubble chat-bubble-warning">
-        There is no data...
-      </div>
-    </div>
-    <div class="chat chat-end">
-      <div class="chat-bubble chat-bubble-success">
-          For Barcelona <%= season.split('_').join(" ") %>
-      </div>
+    <div>
+        <div class="chat chat-start">
+          <div class="chat-bubble chat-bubble-primary">
+              Looks like
+          </div>
+        </div>
+        <div class="chat chat-end">
+          <div class="chat-bubble chat-bubble-warning">
+            There is no data...
+          </div>
+        </div>
+        <div class="chat chat-end">
+          <div class="chat-bubble chat-bubble-success">
+              For Barcelona <%= season.split('_').join(" ") %>
+          </div>
+        </div>
     </div>
 <% } else { %>
     <div class="stats shadow">
@@ -27,9 +29,9 @@
                    <% data.map(item => { %>
                     <g transform="translate(<%=xScale(item.name) %>, 0)" >
                         <!--
-                        <line y2="<%= -dim.height + dim.padding * dim.scaleBy %>" stroke="#000"/>
+                        <line y2="<%= 3 %>" stroke="#000"/>
                         -->
-                        <text class="text-sm" y="30" transform="rotate(45)">
+                        <text class="text-sm" x="50" transform="rotate(45)">
                             <%= item.name.split(' ')[0] %>
                         </text>
                     </g>
@@ -54,7 +56,7 @@
                               x="<%= xScale(datum.name) %>"
                               y="<%= yScale(datum.g) %>"
                               height="<%= yScale.range()[0] - yScale(datum.g) %>"
-                              width="<%= 10 %>"
+                              width="<%= xScale.bandwidth() %>"
                               fill="#DCC8E0"
                               opacity="0.9"
                             />
