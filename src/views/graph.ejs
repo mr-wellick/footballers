@@ -27,11 +27,11 @@
                 <g transform=translate(0,<%=dim.height - dim.padding %>) >
                    <path d="<%= getD(xScale) %>"/>
                    <% data.map(item => { %>
-                    <g transform="translate(<%=xScale(item.name) %>, 0)" >
+                    <g transform="translate(<%= center(xScale.copy(), 0)(item.name) %>, 0)" >
                         <!--
                         <line y2="<%= 3 %>" stroke="#000"/>
                         -->
-                        <text class="text-sm" x="50" transform="rotate(45)">
+                        <text class="text-sm" dy="0.71em" y="10" transform="rotate(45)">
                             <%= item.name.split(' ')[0] %>
                         </text>
                     </g>

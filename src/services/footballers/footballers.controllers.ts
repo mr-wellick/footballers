@@ -1,19 +1,24 @@
 import { Request, Response } from 'express';
 import client from '../../db.js';
-import { type ScaleLinear, scaleLinear, scaleBand } from 'd3-scale';
+import { type ScaleBand, scaleLinear, scaleBand } from 'd3-scale';
 
-function getD(xScale: ScaleLinear<number, number>) {
-  const range0 = xScale.range()[0];
-  const range1 = xScale.range()[1];
+function getD(xScale: ScaleBand<string>) {
   const k = 1;
-  const tickSizeOuter = 1;
   const offset = 0;
+  const range0 = Number(xScale.range()[0]) + offset;
+  const range1 = Number(xScale.range()[1]) + offset;
+  const tickSizeOuter = 1;
 
-  const d = `M${range0},${k * tickSizeOuter}V${offset}H${range1}V${
-    k * tickSizeOuter
-  }`;
+  // "M" + range0 + "," + k * tickSizeOuter + "V" + offset + "H" + range1 + "V" + k * tickSizeOuter
+  const d = `M${range0},${k * tickSizeOuter}V${offset}H${range1}V${k * tickSizeOuter}`;
 
   return d;
+}
+
+function center(scale: ScaleBand<string>, offset: number) {
+  offset = Math.max(0, scale.bandwidth() - offset * 2) / 2;
+  if (scale.round()) offset = Math.round(offset);
+  return (d: string): number => +scale(d)! + offset;
 }
 
 export const retrieveSeason = async (req: Request, res: Response) => {
@@ -37,7 +42,8 @@ export const retrieveSeason = async (req: Request, res: Response) => {
   const xScale = scaleBand()
     .domain(filteredData.map((item) => item.name))
     .range([dim.padding, dim.width - dim.padding])
-    .padding(0.1)
+    .padding(0.1);
+
   const yScale = scaleLinear()
     .domain([0, Math.max(...filteredData.map((item) => item.g))])
     .range([dim.height - dim.padding, dim.padding]);
@@ -50,6 +56,7 @@ export const retrieveSeason = async (req: Request, res: Response) => {
     xScale,
     yScale,
     getD,
+    center,
   });
 };
 
