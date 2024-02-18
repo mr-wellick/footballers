@@ -28,9 +28,7 @@
                    <path d="<%= axisBottom(xScale) %>"/>
                    <% data.map(item => { %>
                     <g transform="translate(<%= position(xScale)(item.name) %>, 0)" >
-                        <!--
-                        <line y2="<%= 3 %>" stroke="#000"/>
-                        -->
+                        <line y2="<%= 6 %>" stroke="#000"/>
                         <text class="text-sm" dy="0.71em" y="10" transform="rotate(45)">
                             <%= item.name.split(' ')[0] %>
                         </text>
@@ -41,9 +39,7 @@
                    <path d="<%= axisLeft(yScale) %>"/>
                    <% yScale.ticks().map(tick => { %>
                     <g transform="translate(0, <%= position(yScale)(tick) %>)" >
-                        <!--
-                        <line x2="<%= dim.width - dim.padding * dim.scaleBy %>" stroke="#000"/>
-                        -->
+                        <line x2="<%= -6 %>" stroke="#000"/>
                         <text class="text-sm" x="-30">
                             <%= tick %>
                         </text>

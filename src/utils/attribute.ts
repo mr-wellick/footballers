@@ -90,3 +90,26 @@ export function position(scale: any) {
 
   return number(scale.copy());
 }
+
+//function translateX(x: number) {
+//  return `translate(${x}, 0)`;
+//}
+//
+//function translateY(y: number) {
+//  return `translate(0, ${y})`;
+//}
+//
+//export function transform(orient: Orientation) {
+//  switch (orient) {
+//    case Orientation.top:
+//    case Orientation.bottom:
+//      return translateX;
+//    case Orientation.left:
+//    case Orientation.right:
+//      return translateY;
+//    default:
+//      break;
+//  }
+//
+//  return null;
+//}
