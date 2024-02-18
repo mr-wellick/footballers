@@ -1,3 +1,5 @@
+import { ScaleBand, ScaleLinear } from 'd3-scale';
+
 enum Orientation {
   top = 1,
   right = 2,
@@ -5,8 +7,10 @@ enum Orientation {
   left = 4,
 }
 
+type ScaleType = ScaleBand<string> | ScaleLinear<number, number>;
+
 function attribute(
-  scale: any,
+  scale: ScaleType,
   orient: number,
   tickSizeOuter = 1,
 ): string | null {
@@ -53,38 +57,43 @@ function attribute(
   return null;
 }
 
-export function axisBottom(scale: any) {
+export function axisBottom(scale: ScaleType) {
   return attribute(scale, Orientation.bottom);
 }
 
-export function axisTop(scale: any) {
+export function axisTop(scale: ScaleType) {
   return attribute(scale, Orientation.top);
 }
 
-export function axisLeft(scale: any) {
+export function axisLeft(scale: ScaleType) {
   return attribute(scale, Orientation.left);
 }
 
-export function axisRight(scale: any) {
+export function axisRight(scale: ScaleType) {
   return attribute(scale, Orientation.right);
 }
 
-function center(scale: any, offset: number) {
-  offset = Math.max(0, scale.bandwidth() - offset * 2) / 2;
-  if (scale.round()) offset = Math.round(offset);
+function center(scale: ScaleType, offset: number) {
+  if ('bandwidth' in scale && 'round' in scale) {
+    offset = Math.max(0, scale.bandwidth() - offset * 2) / 2;
+    if (scale.round()) offset = Math.round(offset);
 
-  return (d: string): number => Number(scale(d)) + offset;
+    return (d: string): number => Number(scale(d)) + offset;
+  }
+
+  return null;
 }
 
+// fix this any type
 function number(scale: any) {
   return (d: number): number => Number(scale(d));
 }
 
-export function position(scale: any) {
+export function position(scale: ScaleType) {
   // repeated in other functions: need to keep track of this (change code to classes)
   const offset = 0;
 
-  if (scale.bandwidth) {
+  if ('bandwidth' in scale) {
     return center(scale.copy(), offset);
   }
 
