@@ -1,25 +1,11 @@
 import { Request, Response } from 'express';
 import client from '../../db.js';
-import { type ScaleBand, scaleLinear, scaleBand } from 'd3-scale';
-
-function getD(xScale: ScaleBand<string>) {
-  const k = 1;
-  const offset = 0;
-  const range0 = Number(xScale.range()[0]) + offset;
-  const range1 = Number(xScale.range()[1]) + offset;
-  const tickSizeOuter = 1;
-
-  // "M" + range0 + "," + k * tickSizeOuter + "V" + offset + "H" + range1 + "V" + k * tickSizeOuter
-  const d = `M${range0},${k * tickSizeOuter}V${offset}H${range1}V${k * tickSizeOuter}`;
-
-  return d;
-}
-
-function center(scale: ScaleBand<string>, offset: number) {
-  offset = Math.max(0, scale.bandwidth() - offset * 2) / 2;
-  if (scale.round()) offset = Math.round(offset);
-  return (d: string): number => +scale(d)! + offset;
-}
+import { scaleLinear, scaleBand } from 'd3-scale';
+import {
+  axisBottom,
+  axisLeft,
+  position,
+} from '../../utils/attribute.js';
 
 export const retrieveSeason = async (req: Request, res: Response) => {
   const { season } = req.body;
@@ -55,8 +41,9 @@ export const retrieveSeason = async (req: Request, res: Response) => {
     dim,
     xScale,
     yScale,
-    getD,
-    center,
+    axisBottom,
+    axisLeft,
+    position,
   });
 };
 

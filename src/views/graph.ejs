@@ -25,9 +25,9 @@
             </div>
             <svg height="<%= dim.height %>" width=" <%= dim.width %>">
                 <g transform=translate(0,<%=dim.height - dim.padding %>) >
-                   <path d="<%= getD(xScale) %>"/>
+                   <path d="<%= axisBottom(xScale) %>"/>
                    <% data.map(item => { %>
-                    <g transform="translate(<%= center(xScale.copy(), 0)(item.name) %>, 0)" >
+                    <g transform="translate(<%= position(xScale)(item.name) %>, 0)" >
                         <!--
                         <line y2="<%= 3 %>" stroke="#000"/>
                         -->
@@ -38,8 +38,9 @@
                    <% }); %>
                 </g>
                 <g transform="translate(<%= dim.padding %>, 0)" >
-                   <% yScale.ticks(10).map(tick => { %>
-                    <g transform="translate(0, <%=yScale(tick) %>)" >
+                   <path d="<%= axisLeft(yScale) %>"/>
+                   <% yScale.ticks().map(tick => { %>
+                    <g transform="translate(0, <%= position(yScale)(tick) %>)" >
                         <!--
                         <line x2="<%= dim.width - dim.padding * dim.scaleBy %>" stroke="#000"/>
                         -->
