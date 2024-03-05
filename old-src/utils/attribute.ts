@@ -28,7 +28,9 @@ function attribute(
     case Orientation.right: {
       if (tickSizeOuter) {
         //'M' + k * tickSizeOuter + ',' + range0 + 'H' + offset + 'V' + range1 + 'H' + k * tickSizeOuter
-        return `M${k * tickSizeOuter},${range0}H${offset}V${range1}H${k * tickSizeOuter}`;
+        return `M${k * tickSizeOuter},${range0}H${offset}V${range1}H${
+          k * tickSizeOuter
+        }`;
       }
       // 'M' + offset + ',' + range0 + 'V' + range1
       return `M${offset},${range0}V${range1}`;
@@ -37,7 +39,9 @@ function attribute(
     case Orientation.bottom: {
       if (tickSizeOuter) {
         // "M" + range0 + "," + k * tickSizeOuter + "V" + offset + "H" + range1 + "V" + k * tickSizeOuter
-        return `M${range0},${k * tickSizeOuter}V${offset}H${range1}V${k * tickSizeOuter}`;
+        return `M${range0},${k * tickSizeOuter}V${offset}H${range1}V${
+          k * tickSizeOuter
+        }`;
       }
       // 'M' + range0 + ',' + offset + 'H' + range1;
       return `M${range0},${offset}H${range1}`;
