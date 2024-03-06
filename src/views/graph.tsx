@@ -105,25 +105,26 @@ const Rects = (props: {
   );
 };
 
-const Graph = () => {
+const Graph = (props: { data: Data[] }) => {
   const dim = { width: 1300, height: 500, padding: 100, scaleBy: 2 };
-  const data: Data[] = [
-    { name: 'leo messi', g: 10 },
-    { name: 'rafael', g: 5 },
-  ];
   const xScale = scaleBand()
-    .domain(data.map((item) => item.name))
+    .domain(props.data.map((item) => item.name))
     .range([dim.padding, dim.width - dim.padding])
     .padding(0.1);
   const yScale = scaleLinear()
-    .domain([0, Math.max(...data.map((item) => item.g))])
+    .domain([0, Math.max(...props.data.map((item) => item.g))])
     .range([dim.height - dim.padding, dim.padding]);
 
   return (
     <svg height={dim.height} width={dim.width}>
-      <XAxis data={data} dim={dim} scale={xScale} />
-      <YAxis data={data} dim={dim} scale={yScale} />
-      <Rects data={data} dim={dim} xScale={xScale} yScale={yScale} />
+      <XAxis data={props.data} dim={dim} scale={xScale} />
+      <YAxis data={props.data} dim={dim} scale={yScale} />
+      <Rects
+        data={props.data}
+        dim={dim}
+        xScale={xScale}
+        yScale={yScale}
+      />
     </svg>
   );
 };

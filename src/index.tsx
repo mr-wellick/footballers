@@ -1,21 +1,31 @@
+import 'dotenv/config';
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
+
 import footballers from './footballers';
 import Layout from './views/home';
 import Graph from './views/graph';
+import { supabase } from './db';
 
 const app = new Hono();
 
 app.route('/footballers', footballers);
-app.get('/api/v1/footballers/seasons', (c) =>
-  c.json({
-    data: [
-      {
-        table_name: 2010,
-      },
-    ],
-  }),
-);
+app.get('/api/v1/footballers/seasons', async (c) => {
+  const { data, error } = await supabase
+    .from('season_2010')
+    .select()
+    .gt('g', 0);
+
+  if (error) {
+    console.log(error);
+    return c.json({
+      error: 'you don goofed',
+    });
+  }
+
+  return c.html(<Graph data={data} />);
+});
+
 app.get('/', (c) => c.html(<Layout />));
 
 const port = 3000;

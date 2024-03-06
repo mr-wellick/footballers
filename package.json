@@ -4,7 +4,9 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.8.2",
+    "@supabase/supabase-js": "^2.39.7",
     "d3-scale": "^4.0.2",
+    "dotenv": "^16.4.5",
     "hono": "^4.0.9"
   },
   "devDependencies": {
