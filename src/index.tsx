@@ -7,6 +7,7 @@ import footballers from './footballers';
 import Layout from './views/home';
 import Graph from './views/graph';
 import { supabase } from './db';
+import { html } from 'hono/html';
 
 const app = new Hono();
 
@@ -29,7 +30,7 @@ app.get('/api/v1/footballers/seasons', async (c) => {
   return c.html(<Graph data={data} />);
 });
 
-app.get('/', (c) => c.html(<Layout />));
+app.get('/', (c) => c.html(html`<!doctype html>${(<Layout />)}`));
 
 const port = 3000;
 console.log(`Server is running on port ${port}`);
