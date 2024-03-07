@@ -1,32 +1,17 @@
 import 'dotenv/config';
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
-
-import footballers from './footballers';
+import { html } from 'hono/html';
 import Layout from './views/home';
-import Graph from './views/graph';
-import { supabase } from './db';
+import footballers from './services/footballers';
+import seasons from './services/seasons';
 
 const app = new Hono();
 
-app.route('/footballers', footballers);
-app.get('/api/v1/footballers/seasons', async (c) => {
-  const { data, error } = await supabase
-    .from('season_2010')
-    .select()
-    .gt('g', 0);
+app.route('/api/v1', seasons);
+app.route('/api/v1', footballers);
 
-  if (error) {
-    console.log(error);
-    return c.json({
-      error: 'you don goofed',
-    });
-  }
-
-  return c.html(<Graph data={data} />);
-});
-
-app.get('/', (c) => c.html(<Layout />));
+app.get('/', (c) => c.html(html`<!doctype html>${(<Layout />)}`));
 
 const port = 3000;
 console.log(`Server is running on port ${port}`);
