@@ -21,7 +21,7 @@ const Layout: FC = () => {
       <body>
         <Header />
         <div class="min-h-screen bg-base-200">
-          <div hx-get="/api/v1/footballers/seasons" hx-trigger="load">
+          <div hx-get="/api/v1/seasons" hx-trigger="load">
             <span class="loading loading-ring loading-lg htmx-indicator"></span>
           </div>
         </div>
