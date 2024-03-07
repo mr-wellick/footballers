@@ -4,16 +4,13 @@ import {
   scaleBand,
   scaleLinear,
 } from 'd3-scale';
-import {
-  axisBottom,
-  axisLeft,
-  position,
-} from '../../old-src/utils/attribute';
+import { axisBottom, axisLeft, position } from '../utils/attribute';
 
 interface Data {
   name: string;
   g: number;
 }
+
 interface Dim {
   width: number;
   height: number;
@@ -36,7 +33,7 @@ const XAxis = (props: {
         return (
           <g
             transform={`translate(${position(props.scale)(
-              datum.name,
+              datum.name
             )}, 0)`}
           >
             <line y2="6" stroke="#000" />
